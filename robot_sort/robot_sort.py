@@ -97,8 +97,33 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # Implement bubble sort
+        # Use light to keep track of boolean
+        self.set_light_on()
 
+        while self.light_is_on():
+            self.set_light_off()
+
+        # Loop through list using can_move_right()
+            while self.can_move_right():
+                # Pick up item and move to next place
+                self.swap_item()
+                self.move_right()
+
+                # If holding greater value, swap, turn on light and move smaller item back a place
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                    self.move_left()
+                    self.swap_item()
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+
+            # At end of list with largest number in correct place, move back to start
+            while self.can_move_left():
+                self.move_left()
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
